@@ -1,13 +1,9 @@
-import api from './base';
+import base from './base';
 
-class categories extends api {
-  constructor() {
-    super();
-  }
-
+class categories {
   async getAll(){
     try {
-      const response = await this.api.get("/categories");
+      const response = await base.api.get("/categories");
 
       return response.data;
     } catch (e) {
@@ -17,7 +13,7 @@ class categories extends api {
 
   async addCategory(data) {
     try {
-      const response = await this.api.post("/categories", data);
+      const response = await base.api.post("/categories", data);
 
       return response.data;
     } catch (e) {
@@ -27,7 +23,7 @@ class categories extends api {
 
   async editCategory(id, data) {
     try {
-      const response = await this.api.put(`/categories/${id}`, data);
+      const response = await base.api.put(`/categories/${id}`, data);
 
       return response.data;
     } catch (e) {
@@ -37,7 +33,7 @@ class categories extends api {
 
   async deleteCategory(id) {
     try {
-      const response = await this.api.delete(`/categories/${id}`);
+      const response = await base.api.delete(`/categories/${id}`);
 
       return response.data;
     } catch (e) {

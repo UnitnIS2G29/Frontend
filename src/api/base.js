@@ -12,6 +12,13 @@ class api {
     });
   }
 
+  setAuth(token) {
+    console.log(this.api.defaults);
+    this.api.defaults.headers.common[
+      "Authorization"
+    ] = `Bearer ${token}`;
+  }
+
 }
 
-export default api;
+export default new api();
