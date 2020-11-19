@@ -11,7 +11,7 @@
         <v-btn color="green" dark @click="editCat = true">Aggiungi Categoria</v-btn>
       </v-col>
       <v-col cols="12" v-for="category in categories" :key="category._id" @click="editCategoryHandler(category)">
-        <v-card>
+        <v-card link>
           <v-row align="center" no-gutters>
             <v-col cols="11">
               <v-card-title>{{category.name}}</v-card-title>
