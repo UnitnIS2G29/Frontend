@@ -8,6 +8,11 @@ Vue.use(VueRouter)
 
 const routes = [
   {
+    path: '/login',
+    name: 'Login',
+    component: Login
+  },
+  {
     path: '/',
     name: 'Home',
     component: Home,
@@ -16,14 +21,12 @@ const routes = [
     }
   },
   {
-    path: '/login',
-    name: 'Login',
-    component: Login
-  },
-  {
     path: '/categories',
     name: 'Categories',
-    component: Categories
+    component: Categories,
+    meta: {
+      requiresAuth: true
+    }
   }
 ]
 
