@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Login from '../views/Login.vue'
 import Categories from '../views/Categories.vue'
+import Timers from '../views/Timers.vue'
 
 Vue.use(VueRouter)
 
@@ -24,6 +25,14 @@ const routes = [
     path: '/categories',
     name: 'Categories',
     component: Categories,
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    path: '/timers',
+    name: 'Timers',
+    component: Timers,
     meta: {
       requiresAuth: true
     }
