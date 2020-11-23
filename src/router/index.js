@@ -3,6 +3,9 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Login from '../views/Login.vue'
 import Categories from '../views/Categories.vue'
+import RequestTimeOff from '../views/RequestTimeOff.vue'
+import AcceptRequestTimeOff from '../views/AcceptRequestTimeOff.vue'
+
 
 Vue.use(VueRouter)
 
@@ -24,6 +27,22 @@ const routes = [
     path: '/categories',
     name: 'Categories',
     component: Categories,
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    path: '/requestTimeOff',
+    name: 'RequestTimeOff',
+    component: RequestTimeOff,
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    path: '/acceptRequestTimeOff',
+    name: 'AcceptRequestTimeOff',
+    component: AcceptRequestTimeOff,
     meta: {
       requiresAuth: true
     }
