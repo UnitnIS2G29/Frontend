@@ -9,9 +9,9 @@
             <v-row justify="center" style="margin-top:50px">
             <v-card v-if="currentTimer">
                 <v-card-title>
-                    <v-panel style="width:100%;min-width:500px" justify="center">
+                    <div style="width:100%;min-width:500px" justify="center">
                         <v-banner justify="center" elevation="12">{{this.elapsedTime}}</v-banner>
-                    </v-panel>
+                    </div>
                 </v-card-title>
                 <v-card-text>
                      <v-btn color="red" @click.stop="editTimerHandler(currentTimer,true)" >STOP TIMER</v-btn>
@@ -19,9 +19,9 @@
             </v-card>
             <v-card v-else>
                 <v-card-title>
-                    <v-panel style="width:100%;min-width:500px" justify="center">
+                    <div style="width:100%;min-width:500px" justify="center">
                         <b>Timer not running..</b>
-                    </v-panel>
+                    </div>
                     
                 </v-card-title>
                 <v-card-text>
