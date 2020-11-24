@@ -7,7 +7,7 @@ class login {
   async login(data){
     try {
       console.log(data);
-      const response = await base.api.post("/login", data);
+      const response = await base.api.post("/authentications", data);
 
       console.log(response.data);
       sessionStorage.setItem("user-token", response.data.token);
