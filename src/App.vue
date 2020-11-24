@@ -26,7 +26,8 @@ export default {
 
   data: () => ({
     links: [
-      ['Categories', 'Categorie']
+      ['Categories', 'Categorie'],
+      ['Departments', 'Reparti']
     ]
   })
 };
