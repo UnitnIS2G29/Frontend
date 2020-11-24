@@ -139,7 +139,7 @@ export default {
     editTimerHandler: function(cat,stopNow = false) {
 
         if(cat && stopNow){
-            cat.stopped_at = this.moment().add(-1,'hour').format('YYYY-MM-DD HH:mm:ss');
+            cat.stopped_at = this.moment().toISOString();
         }
         
         this.editing = true;
@@ -159,12 +159,13 @@ export default {
         this.load();
     },
     startTimer: async function(){
-        timers.postSelf({started_at: this.moment().add(-1,'hour').format('YYYY-MM-DD HH:mm:ss')});
+        timers.postSelf({started_at: this.moment().toISOString()});
         this.load();
     },
     stopTimer: async function(){
         timers.stopSelf();
         this.load();
+        this.editing = false;
     },
     saveTimerHandler: function(){
         if(this.id){
