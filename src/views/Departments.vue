@@ -32,13 +32,13 @@
           <v-col v-if="department.expanded">
             <v-row>
               <v-col>
-                <v-btn @click="1 == 1">Aggiungi utente</v-btn>
+                <v-btn @click.stop="adduserHandler(department)">Aggiungi utente</v-btn>
               </v-col>
             </v-row>
             <v-card user>
               <v-row cols="12" v-for="user in department.employees" :key="user._id">
                 <v-col cols="10">
-                  <v-card-title>{{user._id}}</v-card-title>
+                  <v-card-title>{{get_name_of_user(user._id)}}</v-card-title>
                 </v-col>
               </v-row>
             </v-card>
@@ -61,24 +61,39 @@
         </v-card-text>
       </v-card>
     </v-dialog>
+    <v-dialog v-model="addUser">
+      <v-card>
+        <v-card-text>
+          <v-container>
+            <v-row>
+              <v-col>
+                <h1>Not Implemented</h1>
+              </v-col>
+            </v-row>
+          </v-container>
+        </v-card-text>
+      </v-card>
+    </v-dialog>
   </v-container>
 </template>
 
 <script>
 import departments from '../api/departments.js';
-//import users from '../api/login.js';
+import users from '../api/users.js';
 
 export default {
   name: "departments",
   data: () => ({
     loading: false,
     editCat: false,
+    addUser: false,
+    editUser: false,
     editing: false,
     departments: null,
     department_cards: [],
     catName: null,
     catDesc: null,
-    catId: null,
+    depId: null,
     users: null
   }),
   async mounted() {
@@ -88,6 +103,7 @@ export default {
       this.department_cards.push({...item, 'expanded': false})
     })
     this.loading = false;
+    this.users = await users.getAll();
 
   },
   methods: {
@@ -100,14 +116,36 @@ export default {
 
       if(this.editing) {
         try {
-          await departments.editDepartment(this.catId, {name: this.catName, description: this.catDesc});
-          let index = this.departments.findIndex(el => el._id == this.catId);
+          await departments.editDepartment(this.depId, {name: this.catName, description: this.catDesc});
+          let index = this.departments.findIndex(el => el._id == this.depId);
           this.departments[index] = {...this.departments[index], name: this.catName, description: this.catDesc};
         } catch(e) {
           console.log(e);
         }
         this.editing = false;
-        this.catName = this.catDesc = this.catId = null;
+        this.catName = this.catDesc = this.depId = null;
+      }
+
+      this.editCat = false;
+    },
+
+    saveUser: async function() {
+      if(this.catName && this.catDesc && !this.editing) {
+        const department =  await departments.addDepartment({name: this.catName, description: this.catDesc});
+        this.departments.push(department);
+        this.depId = null;
+      }
+
+      if(this.editing) {
+        try {
+          await departments.editDepartment(this.depId, {name: this.catName, description: this.catDesc});
+          let index = this.departments.findIndex(el => el._id == this.depId);
+          this.departments[index] = {...this.departments[index], name: this.catName, description: this.catDesc};
+        } catch(e) {
+          console.log(e);
+        }
+        this.editing = false;
+        this.catName = this.catDesc = this.depId = null;
       }
 
       this.editCat = false;
@@ -118,7 +156,12 @@ export default {
       this.editing = true;
       this.catName = cat.name;
       this.catDesc = cat.description;
-      this.catId = cat._id;
+      this.depId = cat._id;
+    },
+
+    adduserHandler: function (dep) {
+      this.addUser = true;
+      this.depId = dep._id
     },
 
     deltedepartmentHandler: async function(cat) {
@@ -129,6 +172,16 @@ export default {
       } catch(e) {
         console.log(e);
       }
+    },
+    get_name_of_user: function (id) {
+      let name
+      this.users.forEach((item) => {
+        if (item._id == id) {
+          console.log(item)
+          name = item.name + ", " + item.email
+        }
+      });
+      return name
     }
   }
 
