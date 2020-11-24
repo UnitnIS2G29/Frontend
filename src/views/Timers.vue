@@ -69,6 +69,15 @@
                 <v-col>
                     <v-text-field label="Descrizione Timer" v-model="description"></v-text-field>
 
+                    <v-row>
+                        <label for="started_at">Inizio Tracking</label><br>
+                        <input class="form-control" type="datetime-local" id="started_at" name="started_at" :value="(started_at) ? (moment(started_at).format('YYYY-MM-DDTHH:mm:ss')) : null" @change="started_at = moment($event.target.value).utc().toISOString()"/>
+                    </v-row>
+                    <v-row>
+                        <label for="stopped_at">Fine Tracking</label><br>
+                        <input class="form-control" type="datetime-local" id="stopped_at" name="stopped_at" :value="(stopped_at) ? (moment(stopped_at).format('YYYY-MM-DDTHH:mm:ss')) : null" @change="stopped_at = moment($event.target.value).utc().toISOString()"/>
+                    </v-row>
+
                     <v-select
                         v-model="category"
                         :items="categories"
@@ -139,18 +148,16 @@ export default {
     editTimerHandler: function(cat,stopNow = false) {
 
         if(cat && stopNow){
-            cat.stopped_at = this.moment().toISOString();
+            cat.stopped_at = this.moment().utc().toISOString();
         }
         
         this.editing = true;
         
         this.id = (cat) ? cat._id : null;
-        this.started_at = (cat) ? cat.started_at : null;
-        this.stopped_at = (cat) ? cat.stopped_at : null;
+        this.started_at = (cat && cat.started_at) ? cat.started_at : null;
+        this.stopped_at = (cat && cat.stopped_at) ? cat.stopped_at : null;
         this.description = (cat) ? cat.description : null;
         this.category = (cat) ? cat.category : null;
-
-        
     },
     deleteTimerHandler: async function(timer){
         if(timer._id){
@@ -159,11 +166,11 @@ export default {
         this.load();
     },
     startTimer: async function(){
-        timers.postSelf({started_at: this.moment().toISOString()});
+        await timers.postSelf({started_at: this.moment().utc().toISOString()});
         this.load();
     },
     stopTimer: async function(){
-        timers.stopSelf();
+        await timers.stopSelf();
         this.load();
         this.editing = false;
     },
@@ -190,7 +197,7 @@ export default {
     timePassed: function(now,then){
         var ms = this.moment(now).diff(this.moment(then));
         var d = this.moment.duration(ms);
-        return Math.floor(d.asHours()) + this.moment.utc(ms).format(":mm:ss");
+        return Math.floor(d.asHours()) + this.moment(ms).format(":mm:ss");
     }
 
   }
