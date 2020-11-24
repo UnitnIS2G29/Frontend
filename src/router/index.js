@@ -36,6 +36,8 @@ const routes = [
     path: '/timers',
     name: 'Timers',
     component: Timers,
+  },
+  {
     path: '/requestTimeOff',
     name: 'RequestTimeOff',
     component: RequestTimeOff,
