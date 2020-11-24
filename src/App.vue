@@ -1,13 +1,9 @@
 <template>
   <v-app>
-    <v-navigation-drawer permanent floating v-model="drawer" v-if="!($route.name == 'Login')" app>
+    <v-navigation-drawer permanent floating v-if="!($route.name == 'Login')" app>
       <!--  -->
       <v-list>
         <v-list-item v-for="[link, text] in links" :to="{name: link}" :key="link" link>
-          <v-list-item-icon>
-            <v-icon>{{ icon }}</v-icon>
-          </v-list-item-icon>
-
           <v-list-item-content>
             <v-list-item-title>{{ text }}</v-list-item-title>
           </v-list-item-content>
