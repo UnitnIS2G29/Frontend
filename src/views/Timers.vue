@@ -183,6 +183,7 @@ export default {
             });
         }
         this.load();
+        this.editing = false;
     },
 
     timePassed: function(now,then){
