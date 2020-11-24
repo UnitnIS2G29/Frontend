@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Login from '../views/Login.vue'
 import Categories from '../views/Categories.vue'
+import Timers from '../views/Timers.vue'
 import RequestTimeOff from '../views/RequestTimeOff.vue'
 import AcceptRequestTimeOff from '../views/AcceptRequestTimeOff.vue'
 
@@ -30,6 +31,11 @@ const routes = [
     meta: {
       requiresAuth: true
     }
+  },
+  {
+    path: '/timers',
+    name: 'Timers',
+    component: Timers,
   },
   {
     path: '/requestTimeOff',
