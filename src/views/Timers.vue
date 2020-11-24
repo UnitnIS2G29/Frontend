@@ -154,7 +154,7 @@ export default {
     },
     deleteTimerHandler: async function(timer){
         if(timer._id){
-            timers.delete(timer._id);
+            await timers.delete(timer._id);
         }
         this.load();
     },
