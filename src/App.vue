@@ -27,7 +27,9 @@ export default {
   data: () => ({
     links: [
       ['Categories', 'Categorie'],
-      ['Timers', 'Timer']
+      ['Timers', 'Timer'],
+      ['RequestTimeOff', 'Richieste'],
+      ['AcceptRequestTimeOff', 'Approva Richieste'],
     ]
   })
 };
