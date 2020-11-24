@@ -111,6 +111,7 @@ export default {
       if(this.catName && this.catDesc && !this.editing) {
         const department =  await departments.addDepartment({name: this.catName, description: this.catDesc});
         this.departments.push(department);
+        this.department_cards.push({...department, 'expanded': false})
         this.catName = this.catDesc = null;
       }
 
@@ -166,8 +167,9 @@ export default {
 
     deltedepartmentHandler: async function(cat) {
       try {
-        await departments.deletedepartment(cat._id);
+        await departments.deleteDepartment(cat._id);
         this.departments = this.departments.filter(el => el._id !== cat._id);
+        this.department_cards = this.department_cards.filter(el => el._id !== cat._id);
 
       } catch(e) {
         console.log(e);
