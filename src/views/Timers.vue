@@ -71,11 +71,11 @@
 
                     <v-row>
                         <label for="started_at">Inizio Tracking</label><br>
-                        <input class="form-control" type="datetime-local" id="started_at" name="started_at" :value="(started_at) ? (moment(started_at).format('YYYY-MM-DDTHH:mm:ss')) : null" @input="started_at = moment($event.target.value).utc().toISOString()"/>
+                        <input class="form-control" type="datetime-local" id="started_at" name="started_at" :value="(started_at) ? (moment(started_at).format('YYYY-MM-DDTHH:mm:ss')) : null" @change="started_at = moment($event.target.value).utc().toISOString()"/>
                     </v-row>
                     <v-row>
                         <label for="stopped_at">Fine Tracking</label><br>
-                        <input class="form-control" type="datetime-local" id="stopped_at" name="stopped_at" :value="(stopped_at) ? (moment(stopped_at).format('YYYY-MM-DDTHH:mm:ss')) : null" @input="stopped_at = moment($event.target.value).utc().toISOString()"/>
+                        <input class="form-control" type="datetime-local" id="stopped_at" name="stopped_at" :value="(stopped_at) ? (moment(stopped_at).format('YYYY-MM-DDTHH:mm:ss')) : null" @change="stopped_at = moment($event.target.value).utc().toISOString()"/>
                     </v-row>
 
                     <v-select
@@ -166,11 +166,11 @@ export default {
         this.load();
     },
     startTimer: async function(){
-        timers.postSelf({started_at: this.moment().utc().toISOString()});
+        await timers.postSelf({started_at: this.moment().utc().toISOString()});
         this.load();
     },
     stopTimer: async function(){
-        timers.stopSelf();
+        await timers.stopSelf();
         this.load();
         this.editing = false;
     },
