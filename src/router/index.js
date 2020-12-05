@@ -7,6 +7,7 @@ import Departments from '../views/Departments.vue'
 import Timers from '../views/Timers.vue'
 import RequestTimeOff from '../views/RequestTimeOff.vue'
 import AcceptRequestTimeOff from '../views/AcceptRequestTimeOff.vue'
+import Shifts from '../views/Shifts.vue'
 
 
 Vue.use(VueRouter)
@@ -58,6 +59,14 @@ const routes = [
     path: '/acceptRequestTimeOff',
     name: 'AcceptRequestTimeOff',
     component: AcceptRequestTimeOff,
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    path: '/shifts',
+    name: 'Shifts',
+    component: Shifts,
     meta: {
       requiresAuth: true
     }

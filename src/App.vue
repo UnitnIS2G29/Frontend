@@ -27,6 +27,7 @@ export default {
       ['Timers', 'Timer'],
       ['RequestTimeOff', 'Richieste'],
       ['AcceptRequestTimeOff', 'Approva Richieste'],
+      ['Shifts', 'Turni']
     ]
   })
 };
