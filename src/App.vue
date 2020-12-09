@@ -23,6 +23,7 @@ export default {
   data: () => ({
     links: [
       ['Categories', 'Categorie'],
+      ['Projects', 'Progetti'],
       ['Departments', 'Reparti'],
       ['Timers', 'Timer'],
       ['RequestTimeOff', 'Richieste'],
