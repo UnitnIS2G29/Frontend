@@ -11,6 +11,7 @@ class login {
       console.log(response.data);
       sessionStorage.setItem("user-token", response.data.token);
       sessionStorage.setItem("user-role", response.data.user.role);
+      sessionStorage.setItem("user-id", response.data.user._id);
       base.setAuth(response.data.token);
 
       return response.data;

@@ -9,6 +9,7 @@ import RequestTimeOff from '../views/RequestTimeOff.vue'
 import AcceptRequestTimeOff from '../views/AcceptRequestTimeOff.vue'
 import Shifts from '../views/Shifts.vue'
 import Projects from '../views/Projects.vue';
+import Profile from '../views/Profile.vue';
 
 Vue.use(VueRouter)
 
@@ -78,6 +79,14 @@ const routes = [
     meta: {
       requiresAuth: true
     }
+  },
+  {
+    path: '/profile',
+    name: 'Profile',
+    component: Profile,
+    meta: {
+      requiresAuth: true
+    }    
   }
 ]
 

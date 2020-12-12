@@ -10,6 +10,15 @@ class users {
             throw new Error(e);
         }
     }
+    async getUser(id){
+        try {
+            const response = await base.api.get("/users/"+id);
+
+            return response.data;
+        } catch (e) {
+            throw new Error(e);
+        }
+    }
 
 }
 
