@@ -8,9 +8,9 @@ class login {
     try {
       console.log(data);
       const response = await base.api.post("/authentications", data);
-
       console.log(response.data);
       sessionStorage.setItem("user-token", response.data.token);
+      sessionStorage.setItem("user-role", response.data.user.role);
       base.setAuth(response.data.token);
 
       return response.data;
