@@ -31,6 +31,7 @@ export default {
       ['Timers', 'Timer', 0],
       ['RequestTimeOff', 'Richieste', 0],
       ['AcceptRequestTimeOff', 'Approva Richieste', 1],
+      ['Profile','Profilo', 0]
     ],
     role: null,
   }),
