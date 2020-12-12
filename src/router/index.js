@@ -8,7 +8,7 @@ import Timers from '../views/Timers.vue'
 import RequestTimeOff from '../views/RequestTimeOff.vue'
 import AcceptRequestTimeOff from '../views/AcceptRequestTimeOff.vue'
 import Shifts from '../views/Shifts.vue'
-
+import Projects from '../views/Projects.vue';
 
 Vue.use(VueRouter)
 
@@ -30,6 +30,14 @@ const routes = [
     path: '/categories',
     name: 'Categories',
     component: Categories,
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    path: '/projects',
+    name: 'Projects',
+    component: Projects,
     meta: {
       requiresAuth: true
     }
