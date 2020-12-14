@@ -44,7 +44,7 @@
           <v-container>
             <v-row>
               <v-col>
-                <v-date-picker v-model="reqDay"></v-date-picker>
+                <v-date-picker v-model="reqDay" :min="today"></v-date-picker>
               </v-col>
               <v-col>
                 <v-time-picker format="24hr" v-model="reqBegin"></v-time-picker>
@@ -83,6 +83,9 @@ export default {
     reqEnd: null,
     reqReason: null,
     reqCat: null,
+
+    today: new Date().toISOString().slice(0,10),
+
   }),
   async mounted() {
     this.loading = true;
