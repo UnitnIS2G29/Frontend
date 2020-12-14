@@ -20,6 +20,21 @@ class login {
     }
   }
 
+  async logout() {
+    try {
+      const response = await base.api.delete("/authentications");
+      if(response.data == "Ok") {
+        sessionStorage.removeItem("user-token");
+        sessionStorage.removeItem("user-role");
+        sessionStorage.removeItem("user-id");
+      } else {
+        console.log("Errore logout");
+      }
+    } catch (e) {
+      throw new Error(e);
+    }
+  }
+
 }
 
 export default new login();

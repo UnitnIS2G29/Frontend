@@ -8,6 +8,12 @@
             <v-list-item-title >{{ text }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
+        <v-spacer/>
+        <v-list-item color="red" @click="logout">
+          <v-list-item-content>
+            <v-list-item-title>Logout</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
       </v-list>
 
     </v-navigation-drawer>
@@ -18,6 +24,8 @@
 </template>
 
 <script>
+import login from './api/login';
+
 export default {
   name: "App",
 
@@ -26,7 +34,7 @@ export default {
       //link, text, roleLevel
       ['Home','Home', 0],
       ['Categories', 'Categorie',  1],
-      ['Projects', 'Progetti', 0],
+      ['Projects', 'Progetti', 1],
       ['Departments', 'Reparti', 1],
       ['Timers', 'Timer', 0],
       ['RequestTimeOff', 'Richieste', 0],
@@ -60,7 +68,11 @@ export default {
         default:
           this.role = 0;
       }
-    } 
+    },
+    async logout() {
+      await login.logout();
+      this.$router.push('/login');
+    }
   }
 };
 </script>
