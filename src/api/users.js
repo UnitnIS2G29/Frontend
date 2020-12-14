@@ -19,6 +19,16 @@ class users {
             throw new Error(e);
         }
     }
+    async changePassw(password){
+        try {
+            const response = await base.api.put("/users/self", {password});
+
+          console.log(response.data);
+            return response.data;
+        } catch (e) {
+            throw new Error(e);
+        }
+    }
 
 }
 
