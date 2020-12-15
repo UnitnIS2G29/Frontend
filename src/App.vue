@@ -3,7 +3,7 @@
     <v-navigation-drawer permanent floating v-if="!($route.name == 'Login')" app>
       <!--  -->
       <v-list>
-        <v-list-item v-for="[link, text] in allowedLinks" :to="{name: link}" :key="link" link>
+        <v-list-item v-for="[link, text] in allowedLinks()" :to="{name: link}" :key="link" link>
           <v-list-item-content>
             <v-list-item-title >{{ text }}</v-list-item-title>
           </v-list-item-content>
@@ -35,6 +35,7 @@ export default {
       ['Home','Home', 0],
       ['Categories', 'Categorie',  1],
       ['Projects', 'Progetti', 1],
+      ['Shifts','Turni', 0],
       ['Departments', 'Reparti', 1],
       ['Timers', 'Timer', 0],
       ['RequestTimeOff', 'Richieste', 0],
@@ -43,16 +44,6 @@ export default {
     ],
     role: null,
   }),
-  computed: {
-    allowedLinks: function() {
-      this.roleLevel(sessionStorage.getItem("user-role"));
-      return this.links.filter( (link) => {
-        if (link[2]<=this.role){
-          return link;
-        }
-      });
-    }
-  },
   methods: {
     roleLevel(role) {
       switch (role) {
@@ -68,6 +59,14 @@ export default {
         default:
           this.role = 0;
       }
+    },
+    allowedLinks: function() {
+      this.roleLevel(sessionStorage.getItem("user-role"));
+      return this.links.filter( (link) => {
+        if (link[2]<=this.role){
+          return link;
+        }
+      });
     },
     async logout() {
       await login.logout();
