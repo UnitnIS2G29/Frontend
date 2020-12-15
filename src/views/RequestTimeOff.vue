@@ -95,12 +95,12 @@ export default {
   methods: {
     day(date) {
       if (date) {
-        return moment(String(date)).format("DD/MM/YYYY");
+        return moment(date).utc().format("DD/MM/YYYY");
       }
     },
     time(date) {
       if (date) {
-        return moment(String(date)).format("HH:mm");
+        return moment(date).utc().format("HH:mm");
       }
     },
     category(value) {
