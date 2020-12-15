@@ -11,6 +11,16 @@ class departments {
         }
     }
 
+    async getSelf(){
+        try {
+            const response = await base.api.get("/departments/self");
+
+            return response.data;
+        } catch (e) {
+            throw new Error(e)
+        }
+    }
+
     async addDepartment(data) {
         try {
             const response = await base.api.post("/departments", data);
