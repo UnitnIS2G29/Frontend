@@ -36,6 +36,7 @@
 // @ is an alias to /src
 import check_in from '../api/check-in';
 import departments from '../api/departments.js';
+import moment from "moment";
 
 export default {
   name: 'Home',
@@ -53,7 +54,8 @@ export default {
   methods: {
     checkInHandler: async function() {
       console.log("Button Pressed")
-      this.date = await check_in.get()
+      let timestamp = await check_in.get()
+      this.date = moment(timestamp, 'hh:mm')
     }
   }
 
