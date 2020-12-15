@@ -19,7 +19,7 @@
       </v-col>
       <v-col cols="12">
         <v-card title="Le tue categorie">
-          <v-card-title>Le tue categorie</v-card-title>
+          <v-card-title>I tuoi reparti</v-card-title>
           <v-col cols="12" v-for="department in self_departments" :key="department._id">
             <v-card-text>
               {{department.name}}
