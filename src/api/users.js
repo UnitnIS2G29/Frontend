@@ -21,7 +21,7 @@ class users {
     }
     async changePassw(password){
         try {
-            const response = await base.api.put("/users/self", {password});
+            const response = await base.api.put("/users/self/password", {password});
 
           console.log(response.data);
             return response.data;
